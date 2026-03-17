@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiyou.dao.EnvDao">
+
+    <resultMap type="com.xiyou.entity.Env" id="EnvMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="tmp" column="tmp" jdbcType="VARCHAR"/>
+        <result property="him" column="him" jdbcType="VARCHAR"/>
+        <result property="gan" column="gan" jdbcType="VARCHAR"/>
+        <result property="cdate" column="cdate" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <select id="queryById" resultMap="EnvMap">
+        select id, tmp, him, gan, cdate
+        from env
+        where id = #{id}
+    </select>
+
+    <select id="queryAllByLimit" resultMap="EnvMap">
+        select id, tmp, him, gan, cdate
+        from env
+        <where>
+            <if test="env.id != null">
+                and id = #{env.id}
+            </if>
+            <if test="env.tmp != null and env.tmp != ''">
+                and tmp = #{env.tmp}
+            </if>
+            <if test="env.him != null and env.him != ''">
+                and him = #{env.him}
+            </if>
+            <if test="env.gan != null and env.gan != ''">
+                and gan = #{env.gan}
+            </if>
+            <if test="env.cdate != null">
+                and cdate = #{env.cdate}
+            </if>
+        </where>
+        order by id desc
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <select id="count" resultType="java.lang.Long">
+        select count(*)
+        from env
+        <where>
+            <if test="env.id != null">
+                and id = #{env.id}
+            </if>
+            <if test="env.tmp != null and env.tmp != ''">
+                and tmp = #{env.tmp}
+            </if>
+            <if test="env.him != null and env.him != ''">
+                and him = #{env.him}
+            </if>
+            <if test="env.gan != null and env.gan != ''">
+                and gan = #{env.gan}
+            </if>
+            <if test="env.cdate != null">
+                and cdate = #{env.cdate}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into env(tmp, him, gan, cdate)
+        values (#{tmp}, #{him}, #{gan}, #{cdate})
+    </insert>
+
+    <update id="update">
+        update env
+        <set>
+            <if test="tmp != null and tmp != ''">tmp = #{tmp},</if>
+            <if test="him != null and him != ''">him = #{him},</if>
+            <if test="gan != null and gan != ''">gan = #{gan},</if>
+            <if test="cdate != null">cdate = #{cdate},</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteById">
+        delete from env where id = #{id}
+    </delete>
+
+    <select id="getEnvListTop5" resultType="com.xiyou.entity.Env">
+        SELECT * FROM env ORDER BY id DESC LIMIT 0,5
+    </select>
+
+    <select id="findAvgEnvData" resultType="java.util.Map">
+        SELECT ROUND(AVG(tmp)) avgtmp,ROUND(AVG(him)) avghim,ROUND(AVG(gan)/10) avggan FROM env
+    </select>
+
+</mapper>
