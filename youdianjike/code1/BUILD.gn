@@ -1,0 +1,11 @@
+# static_library中指定业务模块的编译结果，为静态库文件libhelloapp.a
+# sources中指定静态库.a所依赖的.c文件及其路径
+# include_dirs中指定source所需要依赖的.h文件路径
+static_library("helloapp") { 
+    sources = [   
+        "hellodemo.c"
+    ]
+    include_dirs = [
+        "//utils/native/lite/include"
+    ]
+}
