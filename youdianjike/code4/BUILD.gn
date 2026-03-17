@@ -1,0 +1,36 @@
+#static_library("wifiappdemo") {
+#    sources = [
+#        "main.c",
+#        "wifi_utils.c",
+#        "tcpclientdemo.c",
+#        "oled_ssd1306.c",
+#        "aht20.c",         
+#       ]
+#     include_dirs = [
+#        "//utils/native/lite/include",
+#        "//kernel/liteos_m/components/cmsis/2.0",
+#        "//base/iot_hardware/interfaces/kits/wifiiot_lite",
+#        "//vendor/hisi/hi3861/hi3861/third_party/lwip_sack/include",
+#       "//foundation/communication/interfaces/kits/wifi_lite/wifiservice",
+        
+#    ]
+#}
+
+
+
+static_library("wifiappdemo") {
+    sources = [
+        "main.c",
+        "wifi_utils.c",
+        "envclientdemo.c",
+        "oled_ssd1306.c",
+        "aht20.c",
+    ]
+    include_dirs = [
+        "//utils/native/lite/include",
+        "//kernel/liteos_m/components/cmsis/2.0",
+        "//base/iot_hardware/interfaces/kits/wifiiot_lite",
+        "//vendor/hisi/hi3861/hi3861/third_party/lwip_sack/include",
+        "//foundation/communication/interfaces/kits/wifi_lite/wifiservice",
+    ]
+}

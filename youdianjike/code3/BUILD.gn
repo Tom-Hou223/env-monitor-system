@@ -1,0 +1,55 @@
+#MQ-2 燃气传感器数据读取
+#static_library("mq2app") {
+#    sources = [   
+#        "mq2demo.c"
+#   ]
+#    include_dirs = [
+#        "//utils/native/lite/include",
+#        "//kernel/liteos_m/components/cmsis/2.0",
+#        "//base/iot_hardware/interfaces/kits/wifiiot_lite",
+#    ]
+#}
+
+#AHT20 温湿度传感器数据读取
+#static_library("envapp") {
+#    sources = [   
+#        "aht20demo.c",
+#        "aht20.c",
+#   ]
+#    include_dirs = [
+#        "//utils/native/lite/include",
+#        "//kernel/liteos_m/components/cmsis/2.0",
+#        "//base/iot_hardware/interfaces/kits/wifiiot_lite",
+#    ]
+#}
+
+
+
+#OLED显示屏开发
+#static_library("envapp") {
+#    sources = [   
+#        "oleddemo.c",
+#        "oled_ssd1306.c",
+#    ]
+#    include_dirs = [
+#        "//utils/native/lite/include",
+#        "//kernel/liteos_m/components/cmsis/2.0",
+#        "//base/iot_hardware/interfaces/kits/wifiiot_lite",
+#    ]
+#}
+
+
+
+#AHT20 温湿度传感器数据读取 + OLED显示屏开发
+static_library("envapp") {
+    sources = [   
+        "envdemo.c",
+        "aht20.c",
+        "oled_ssd1306.c",
+    ]
+    include_dirs = [
+        "//utils/native/lite/include",
+        "//kernel/liteos_m/components/cmsis/2.0",
+        "//base/iot_hardware/interfaces/kits/wifiiot_lite"
+    ]
+}
